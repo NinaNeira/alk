@@ -1,0 +1,46 @@
+html {
+    background: #1b1c1d;
+    font-family: 'Exo', sans-serif;
+    color: #fff;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+input {
+    background: #fff;
+    font-family: 'Exo', sans-serif;
+    width: 60px;
+    border: 1px solid #fff;
+    border-radius: .2rem;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+input:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.timer {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: .3rem;
+}
+
+.btn {
+    background-color: transparent;
+    font-family: 'Exo', sans-serif;
+    font-size: 0.9rem;
+    width: 70px;
+    color: #fff;
+    border: none;
+    border-radius: .2rem;
+    box-shadow:  0 0 0 1px #fff inset;
+    margin-left: 5px;
+    padding: 5px;
+    outline: 0;
+}
