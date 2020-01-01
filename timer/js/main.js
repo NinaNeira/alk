@@ -1,23 +1,23 @@
-function checkMin() {
-    let inputMin = document.querySelector('input[name="minutes"]');
-    if(inputMin.value > 60) {
-        inputMin.value='60';
-    } else if(inputMin.value < 0) {
-        inputMin.value = '0';
-    }
-}
-
-function checkSec() {
-    let inputSec = document.querySelector('input[name="seconds"]');
-
-    if (inputSec.value > 60) {
-        inputSec.value='60';
-    } else if (inputSec.value < 0) {
-        inputSec.value = '0';
-    }
-}
-
 $(document).ready(function() {
+
+    function checkMin() {
+        let inputMin = $('input[name="minutes"]');
+        if(inputMin.value > 60) {
+            inputMin.value='60';
+        } else if(inputMin.value < 0) {
+            inputMin.value = '0';
+        }
+}
+
+    function checkSec() {
+        let inputSec = $('input[name="seconds"]');
+
+        if (inputSec.value > 60) {
+            inputSec.value='60';
+        } else if (inputSec.value < 0) {
+            inputSec.value = '0';
+        }
+}
     $('#start').click(function() {
         let minutes = $('input[name="minutes"]').val(),
             seconds = $('input[name="seconds"]').val();
