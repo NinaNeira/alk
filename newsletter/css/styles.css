@@ -81,7 +81,18 @@ input {
     border: none;
     border-radius: .2rem;
     box-shadow:  0 0 0 1px #fff inset;
-    margin-left: 5px;
     padding: 5px;
     outline: 0;
+}
+
+@media (max-width: 450px) {
+    input {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 451px) {
+    .btn {
+        margin: 10px 0 0;
+    }
 }
