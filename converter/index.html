@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>ALK - Converter</title>
+</head>
+<body>
+    <div class="main">
+        <div class="conv">
+            <h1>
+                Converter
+            </h1>
+            <div class="fields">
+                <div class="field-cels">
+                    <label for="cels">Celsius</label>
+                    <input name="cels" type="number" step="0.1" onkeyup="celsConv()" />
+                </div>
+                <button class="btn" onclick="revert()"><i class="fas fa-exchange-alt"></i></button>
+                <div class="field-fahr">
+                    <label for="fahr">Fahrenheit</label>
+                    <input name="fahr" type="number" step="0.1" onkeyup="fahrConv()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
