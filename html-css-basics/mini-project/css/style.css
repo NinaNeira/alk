@@ -1,0 +1,115 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Turret Road', cursive;
+    font-size: 16px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #006699;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 2px solid darkgray;
+    border-radius: 5px;
+}
+
+header {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand a,
+.brand img {
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+nav a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    font-size: 18px;
+}
+
+nav a:hover {
+    background-color: black;
+    color: white;
+}
+
+.slider img {
+    display: block;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+article {
+    width: 70%;
+    padding: 30px;
+}
+
+aside {
+    width: 30%;
+    padding: 20px;
+    background-color: lightgray;
+    border-left: 1px solid gray; 
+}
+
+.widget {
+    margin-bottom: 50px;
+}
+
+.widget img {
+    float: left;
+    margin: 0 15px 15px 0;
+}
+
+.widget ul {
+    list-style-type: square;
+    padding: 0 0 0 15px;
+}
+
+.widget li {
+    margin-bottom: 20px;
+}
+
+.widget h3 {
+    text-align: center;
+}
+
+footer {
+    background-color: lightgray;
+    border-top: 1px solid gray; 
+    padding: 22px 15px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
