@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700&display=swap&subset=latin-ext');
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.jumbotron {
+  margin: 0;
+  border-radius: 0;
+}
+
+/*============= NAVIGATION ============*/
+
+.navbar {
+  background-color: #000!important;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+}
+
+.navbar-brand img {
+  height: 2rem;
+}
+
+.navbar-nav li {
+  padding-right: 0.8rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  padding-top: 0.8rem;
+  color: #fff
+}
+
+.navbar-dark .navbar-nav .nav-link:active {
+  color: red;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: red;
+}
+
+/*============= LP ============*/
+
+.home-inner {
+  background-image: url('img/computers.png');
+}
+
+.caption {
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 40%;
+  z-index: 1;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.caption h1 {
+  padding-bottom: 1.2rem;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  text-shadow: 0.1rem 0.1rem 0.5rem #000;
+}
+
+.caption h3 {
+  padding-bottom: 0.8rem;
+  text-shadow: 0.1rem 0.1rem 0.5rem #000;
+}
+
+/*============= FEATURES =============*/
+
+#features .jumbotron {
+  padding: 4rem;
+  background-color: #1b1c1d;
+  color: #fff;
+}
+
+.jumbo-line {
+  border-color: #fff;
+}
+
+/*============= RESOURCES =============*/
+
+#resources .jumbotron {
+  padding: 2rem;
+  background-color: #fff;
+}
+
+#resources > h3 {
+  padding-bottom: 1rem;
+}
+
+.resource > h4 {
+  padding-top: 1rem;
+}
+
+/*============= CLIENTS =============*/
+
+#clients .jumbotron {
+  padding: 4rem;
+  background-color: #1b1c1d;
+  color: #fff;
+}
+
+#clients .jumbo-line {
+  width: 8rem;
+  color: #fff;
+}
+
+.client {
+  border-radius: 50%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.blockquote p {
+  font-size: 1rem;
+}
+
+.blockquote-footer {
+  background-color: #1b1c1d;
+}
+
+@media (max-width: 768px) {
+  .client {
+    border-radius: 50%;
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+/*============= FOOTER =============*/
+
+footer {
+  padding: 2rem 0;
+  background-color: #000;
+  color: #fff;
+}
+
+footer .fab {
+  padding: 2rem;
+}
+
+footer > .col-md-5 {
+  margin: 0 auto;
+}
+
+/*============= SECTION =============*/
+
+.narrow {
+  width: 75%;
+  margin: 1.5rem auto;
+  padding-top: 0;
+}
+.narrow h1 {
+    font-size: 2.4rem;
+  }
+.btn-secondary {
+  border-width: medium;
+  border-radius: 0;
+  padding: .6rem 1.2rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 1rem;
+  border-color: #1EBBA3;
+  background-color: #1EBBA3;
+  color: white;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  border-color: #189582;
+  background-color: #189582;
+  color: white;
+}
+
+
+/*============ BOOTSTRAP BREAK POINTS:
+
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+=============*/
