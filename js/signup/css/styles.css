@@ -1,0 +1,103 @@
+html {
+    background: #1b1c1d;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+p {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+    width: 220px;
+    border: 1px solid #fff;
+    border-radius: .2rem;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.signup {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: .3rem;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    background-image: url('https://images.unsplash.com/photo-1516860304216-d3daa2927a68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=90&q=80');
+    background-size: contain;
+    box-shadow: 0 0 3px 3px #1b1c1d inset;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    width: 100px;
+    color: #fff;
+    border: none;
+    border-radius: .2rem;
+    box-shadow:  0 0 0 1px #fff inset;
+    padding: 5px;
+    outline: 0;
+}
+
+.btn:disabled {
+    color: grey;
+    box-shadow: 0 0 0 1px grey inset;
+}
+
+.pass-strenght {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+}
+
+.weak.filled {
+    display: block;
+    height: 10px;
+    width: 40px;
+    background-color: orange;
+}
+
+.average.filled {
+    display: block;
+    height: 10px;
+    width: 40px;
+    background-color: yellow;
+}
+
+.strong.filled {
+    display: block;
+    height: 10px;
+    width: 40px;
+    background-color: green;
+}
