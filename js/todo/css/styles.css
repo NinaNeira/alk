@@ -1,0 +1,171 @@
+html {
+    background: #1b1c1d;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+p {
+    width: 100%;
+}
+
+.item-add {
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    margin-right: 10px;
+    border: 1px solid #fff;
+    border-radius: .2rem;
+    padding: 5px;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.check {
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+.check:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.check input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.check input:disabled ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.check input:disabled ~ .checkmark:after {
+    display: block;
+}
+
+.check .checkmark:after {
+    width: 5px;
+    height: 10px;
+    margin-left: 6px;
+    margin-top: 2px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: .3rem;
+}
+
+.add {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    width: 60px;
+    color: #fff;
+    border: none;
+    border-radius: .2rem;
+    box-shadow:  0 0 0 1px #fff inset;
+    padding: 5px;
+    outline: 0;
+}
+
+.show-completed {
+    align-self: baseline;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.show-completed .checkmark {
+    margin-right: 10px;
+}
+
+.show-completed.open:hover input ~ .checkmark  {
+    background-color: #2196F3;
+}
+
+.show-completed.open .checkmark:after {
+    display: block;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.completed-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.completed .check {
+    padding-left: 0;
+}
+
+.completed-items.hidden {
+    display: none;
+}
+
+.completed-items .checkmark {
+    display: none;
+}
