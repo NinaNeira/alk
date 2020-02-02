@@ -17,7 +17,7 @@ $(document).ready(function() {
             const averageReg = /^(?=.*?[A-Z]).{8,}$/,
                   strongReg = /^(?=.*?[A-Z])(?=.*?[0-9]).{12,}$/
 
-            $('input[name="password"]').on('keyup', function () {
+            $('input[name="password"]').on('keyup', function() {
                 if (password.val()) {
                     $('.weak').addClass('filled');
                 } else {
