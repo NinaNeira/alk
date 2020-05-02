@@ -1,0 +1,17 @@
+.user {
+    &-header {
+        height: 80px;
+        background-color: $color-regent-gray;
+        color: $color-white;
+    }
+
+    &-content {
+        background-color: $color-concrete;
+
+        img {
+            display: block;
+            width: 190px;
+            margin: 20px auto;
+        }
+    }
+}

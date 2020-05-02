@@ -1,0 +1,19 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../node_modules/tiny-slider/src/tiny-slider.scss';
+
+@import 'utils/variables.scss';
+
+@import 'base/normalize';
+@import 'base/typography';
+@import 'base/base';
+
+@import 'layout/welcome';
+@import 'layout/homepage';
+@import 'layout/rooms';
+@import 'layout/error';
+@import 'layout/login';
+@import 'layout/user';
+
+@import 'components/header';
+@import 'components/footer';
+@import 'components/slider';

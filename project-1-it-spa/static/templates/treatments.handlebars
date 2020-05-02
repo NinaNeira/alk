@@ -1,0 +1,21 @@
+<div class="treatments">
+	<h1>Zabiegi</h1>
+	<div class="col-12">
+		<div class="row">
+			{{#each data}}
+			<div class="col-3">
+				<div class="card">
+					<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">{{name}}</h5>
+						<p class="card-text">Area: {{area}}<br />
+							Time: {{time}}<br />
+							Price: {{price}}</p>
+						<a class="btn btn-primary" data-id="{{_id}}">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
