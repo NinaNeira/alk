@@ -1,0 +1,19 @@
+<div class="basket">
+    <h1>Koszyk</h1>
+    <div class="col-12">
+        <div class="basket__content row">
+            <ul class="list-group">
+                {{#each data.items}}
+                <li id="{{item._id}}" class="list-group-item">{{item.name}} Qty: <span
+                        id="qty-{{item._id}}">{{qty}}</span> <i class="far fa-minus-square" data-id="{{item._id}}"></i>
+                    Price:
+                    {{price}} <i class="far fa-trash-alt" data-id="{{item._id}}"></i></li>
+                {{/each}}
+
+                <span id="basket-total-price">{{data.totalPrice}}</span>
+
+            </ul>
+        </div>
+        <a class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>

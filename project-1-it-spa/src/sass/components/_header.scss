@@ -1,0 +1,45 @@
+.navbar {
+    height: 120px;
+    background-color: $color-golden-tainoi;
+    font-size: 1.2rem;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+
+    a {
+        color: $color-outer-space;
+
+        &[href*='/logowanie'],
+        &[href*='/wylogowanie'],
+        &[href*='/konto'] {
+            display: none;
+        }
+    }
+
+    &-brand {
+        margin: 0;
+        padding: 0 40px;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    &-nav {
+        &:first-of-type {
+            justify-items: center;
+            align-items: center;
+            margin-right: -86px;
+        }
+
+        &:nth-of-type(2) {
+            .nav-link {
+                padding-left: 0.6rem;
+                padding-right: 0.6rem;
+            }
+        }
+
+        .nav-link {
+            &.active {
+                font-weight: $font-weight-bold;
+            }
+        }
+    }
+}

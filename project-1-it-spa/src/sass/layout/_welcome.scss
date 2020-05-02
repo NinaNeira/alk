@@ -1,0 +1,87 @@
+.welcome-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-golden-tainoi;
+    opacity: 1;
+    z-index: $zindex-popover;
+
+    &-heading {
+        font-size: 4rem;
+        font-weight: $font-weight-bold;
+        overflow: hidden;
+        border-right: 0.5rem solid $color-sunset-orange;
+        white-space: nowrap;
+        margin: 0 auto;
+        animation: typing 3.5s steps(40, end), cursor 0.75s step-end infinite;
+    }
+
+    &-enter {
+        opacity: 0;
+        animation: fadeIn 4s 4s forwards;
+    }
+
+    &-text {
+        font-size: 2rem;
+        margin: 5rem 0 2rem;
+    }
+
+    &-btn {
+        font-size: 2rem;
+        color: $color-sunset-orange;
+        border-color: $color-sunset-orange;
+
+        &:hover {
+            background-color: $color-sunset-orange;
+            border-color: $color-sunset-orange;
+            color: $color-white;
+            outline: none;
+        }
+
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        &:not(:disabled):not(:disabled):active {
+            background-color: $color-sunset-orange;
+            border-color: $color-sunset-orange;
+            outline: none;
+
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes cursor {
+        from,
+        to {
+            border-color: transparent;
+        }
+        50% {
+            border-color: $color-sunset-orange;
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
