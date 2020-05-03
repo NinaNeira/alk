@@ -56,14 +56,14 @@ export const addTreatmentToCart = async (target) => {
 
         if (data === 'added') {
             $('.alert').remove();
-            $('.treatments').prepend(
+            $('.treatments__content').prepend(
                 '<div class="alert alert-success" role="alert">Zabieg dodany do koszyka.</div>'
             );
         }
 
         if (data === 'max') {
             $('.alert').remove();
-            $('.treatments').prepend(
+            $('.treatments__content').prepend(
                 '<div class="alert alert-danger" role="alert">Możesz dodać maksymalnie 3 sesje jednego zabiegu. Aby edytować, przejdź do koszyka.</div>'
             );
         }
