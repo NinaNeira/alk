@@ -1,18 +1,78 @@
 .home {
-    &-location {
-        &-header {
+    &__offer {
+        &--header {
+            height: 80px;
+            background-color: $color-outer-space;
+            color: $color-white;
+        }
+
+        &--content {
+            h4 {
+                padding: 15px 0;
+            }
+
+            &-img {
+                display: block;
+                margin: 0 auto;
+                width: 190px;
+                background-color: $color-golden-tainoi;
+                border-radius: 50%;
+            }
+
+            &-item {
+                &:first-of-type,
+                &:last-of-type {
+                    img {
+                        width: 460px;
+                        border-radius: unset;
+                        background-color: unset;
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+
+    &__location {
+        &--header {
             height: 80px;
             background-color: $color-regent-gray;
             color: $color-white;
         }
 
-        &-content {
+        &--content {
             background-color: $color-tower-gray;
 
             &-img {
                 display: block;
                 margin: 0 auto;
+                padding-bottom: 30px;
                 width: 450px;
+            }
+        }
+    }
+
+    &__about {
+        &--header {
+            height: 80px;
+            background-color: $color-outer-space;
+            color: $color-white;
+        }
+
+        &--content {
+            background-color: $color-golden-tainoi;
+            color: $color-white;
+
+            &-item {
+                border-right: 2px solid $color-white;
+
+                &:last-of-type {
+                    border: none;
+                }
+
+                p {
+                    padding: 20px;
+                }
             }
         }
     }
