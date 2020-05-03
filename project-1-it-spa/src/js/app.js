@@ -50,6 +50,7 @@ window.addEventListener('load', () => {
         try {
             isUserAuthenticated();
 
+            $('body').css({ 'overflow-y': 'hidden' });
             $('.welcome__content--btn').click(function () {
                 $('.welcome__content').animate({ top: '-100%' }, 1000);
 
@@ -93,12 +94,14 @@ window.addEventListener('load', () => {
             });
 
             $('.rooms__date--arr').datepicker({
+                orientation: 'bottom right',
                 format: 'mm/dd/yyyy',
                 todayHighlight: true,
                 autoclose: true,
             });
 
             $('.rooms__date--dep').datepicker({
+                orientation: 'bottom right',
                 format: 'mm/dd/yyyy',
                 todayHighlight: true,
                 autoclose: true,

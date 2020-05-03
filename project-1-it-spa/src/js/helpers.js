@@ -16,7 +16,7 @@ export const addRoomToCart = async (target) => {
 
         if (!dateArr || !dateDep) {
             $('.alert').remove();
-            $('.rooms').prepend(
+            $('.rooms__content').prepend(
                 '<div class="alert alert-danger" role="alert">Wybierz okres pobytu.</div>'
             );
         } else {
@@ -31,14 +31,14 @@ export const addRoomToCart = async (target) => {
 
             if (data === 'added') {
                 $('.alert').remove();
-                $('.rooms').prepend(
+                $('.rooms__content').prepend(
                     '<div class="alert alert-success" role="alert">Pokój dodany do koszyka.</div>'
                 );
             }
 
             if (data === 'exists') {
                 $('.alert').remove();
-                $('.rooms').prepend(
+                $('.rooms__content').prepend(
                     '<div class="alert alert-danger" role="alert">Dodałeś już ten pokój! Aby go usunąć, przejdź do koszyka.</div>'
                 );
             }

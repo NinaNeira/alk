@@ -1,9 +1,27 @@
 .rooms {
+    &__header {
+        height: 80px;
+        background-color: $color-outer-space;
+        color: $color-white;
+    }
+
+    &__content {
+        min-height: calc(100vh - 300px);
+        background-color: $color-concrete;
+
+        .card {
+            width: 25rem;
+            margin: 0 auto;
+        }
+    }
+
     &__date {
         &--arr,
         &--dep {
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 600;
+            &::placeholder {
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 600;
+            }
         }
     }
 }

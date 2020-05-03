@@ -3,7 +3,6 @@ body {
     background-color: $color-concrete;
     font-family: 'Roboto', sans-serif;
     color: $color-outer-space;
-    overflow-y: hidden;
 }
 
 .row {
@@ -28,4 +27,27 @@ h3 {
 
 p {
     font-size: 1.1rem;
+}
+
+.datepicker {
+    &.dropdown-menu {
+        min-width: 15rem;
+    }
+
+    .table-condensed {
+        margin: 0 auto;
+    }
+
+    table {
+        tr {
+            td {
+                &.active {
+                    &.active {
+                        background-image: none;
+                        background-color: $color-outer-space;
+                    }
+                }
+            }
+        }
+    }
 }
