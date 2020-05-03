@@ -20,7 +20,7 @@ import {
 } from './helpers';
 
 window.addEventListener('load', () => {
-    const el = $('#app');
+    const el = $('.main__content--app');
 
     const errorTemplate = Handlebars.getTemplate('error');
     const homeTemplate = Handlebars.getTemplate('home');
@@ -50,23 +50,27 @@ window.addEventListener('load', () => {
         try {
             isUserAuthenticated();
 
+            $('.welcome__content--btn').click(function () {
+                $('.welcome__content').animate({ top: '-100%' }, 1000);
+
+                setTimeout(() => {
+                    $('body').css({ 'overflow-y': 'scroll' });
+                }, 1000);
+
+                const slider = tns({
+                    container: '.home__slider',
+                    mode: 'gallery',
+                    autoplay: true,
+                    controls: false,
+                    nav: false,
+                    autoplayButtonOutput: false,
+                    speed: 500,
+                    autoplayTimeout: 10000,
+                });
+            });
+
             const html = homeTemplate();
             el.html(html);
-
-            $('.welcome-content-btn').click(function () {
-                $('.welcome-content').animate({ top: '-100%' }, 1000);
-            });
-
-            const slider = tns({
-                container: '.home-slider',
-                mode: 'gallery',
-                autoplay: true,
-                controls: false,
-                nav: false,
-                autoplayButtonOutput: false,
-                speed: 500,
-                autoplayTimeout: 10000,
-            });
         } catch (err) {
             console.log(err);
         }
