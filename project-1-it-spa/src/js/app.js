@@ -1,5 +1,6 @@
 import Router from 'vanilla-router';
 import Handlebars from 'handlebars';
+import moment from 'moment';
 import { tns } from 'tiny-slider/src/tiny-slider';
 
 import '../sass/main.scss';
@@ -36,6 +37,12 @@ window.addEventListener('load', () => {
         return new Handlebars.SafeString(newString);
     });
 
+    Handlebars.registerHelper('formatDate', function (date, format) {
+        const momentDate = moment(date);
+        console.log(momentDate);
+        return momentDate.format(format);
+    });
+
     const router = new Router({
         mode: 'history',
         page404: () => {
@@ -48,6 +55,9 @@ window.addEventListener('load', () => {
 
     router.add('/', async () => {
         try {
+            const html = homeTemplate();
+            el.html(html);
+
             isUserAuthenticated();
 
             $('body').css({ 'overflow-y': 'hidden' });
@@ -69,9 +79,6 @@ window.addEventListener('load', () => {
                     autoplayTimeout: 10000,
                 });
             });
-
-            const html = homeTemplate();
-            el.html(html);
         } catch (err) {
             console.log(err);
         }
@@ -95,14 +102,14 @@ window.addEventListener('load', () => {
 
             $('.rooms__date--arr').datepicker({
                 orientation: 'bottom right',
-                format: 'mm/dd/yyyy',
+                format: 'yyyy/mm/dd',
                 todayHighlight: true,
                 autoclose: true,
             });
 
             $('.rooms__date--dep').datepicker({
                 orientation: 'bottom right',
-                format: 'mm/dd/yyyy',
+                format: 'yyyy/mm/dd',
                 todayHighlight: true,
                 autoclose: true,
             });
@@ -251,22 +258,43 @@ window.addEventListener('load', () => {
             const response = await database.get('/basket');
             const data = response.data;
 
-            const html = basketTemplate({ data: data });
-            el.html(html);
+            if (data.totalQty && data.totalQty !== 0) {
+                const html = basketTemplate({ data: data });
+                el.html(html);
 
-            $('.fa-minus-square').on('click', (e) => {
-                e.preventDefault();
-                const target = $(e.currentTarget);
-                removeItem(target);
-            });
+                $('.fa-minus-square').on('click', (e) => {
+                    e.preventDefault();
+                    const target = $(e.currentTarget);
+                    removeItem(target);
+                });
 
-            $('.fa-trash-alt').on('click', (e) => {
-                e.preventDefault();
-                const target = $(e.currentTarget);
-                deleteItem(target);
-            });
+                $('.fa-trash-alt').on('click', (e) => {
+                    e.preventDefault();
+                    const target = $(e.currentTarget);
+                    deleteItem(target);
+                });
 
-            $('.btn').click(checkout);
+                $('.btn').click(checkout);
+            } else {
+                const html = `<div class="basket">
+                <div class="basket__header">
+                    <div class="row h-100">
+                        <div class="col-12 align-self-center">
+                            <h3>Koszyk</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="basket__content d-flex justify-content-center flex-column">
+                    <div class="row w-100 pb-5 justify-content-md-center">
+                        <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+                    </div>
+                    <div class="row w-100 p-0 justify-content-md-center">    
+                        <p>Twój koszyk jest pusty.</p>
+                    </div>
+                </div>
+            </div>`;
+                el.html(html);
+            }
         } catch (err) {
             console.log(err);
         }

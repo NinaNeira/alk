@@ -79,12 +79,12 @@ export const removeItem = async (target) => {
         const data = response.data;
 
         $('.alert').remove();
-        $('.basket').prepend(
+        $('.basket__header').append(
             '<div class="alert alert-success" role="alert">Usunięto z koszyka.</div>'
         );
 
         if (!(targetId in data.items)) {
-            $(`#${targetId}`).remove();
+            $(`#${targetId}`).fadeOut();
             $('#basket-total-price').text(data.totalPrice);
         } else {
             $(`#qty-${targetId}`).text(data.items[targetId].qty);
@@ -93,7 +93,17 @@ export const removeItem = async (target) => {
 
         if (data.totalQty === 0) {
             $('.basket__content').html(
-                '<img src="img/empty.png" alt="Koszyk jest pusty" /><p>Twój koszyk jest pusty.</p>'
+                `<div class="row w-100 pb-5 justify-content-md-center">
+                <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+            </div>
+            <div class="row w-100 p-0 justify-content-md-center">    
+                <p>Twój koszyk jest pusty.</p>
+            </div>`
+            );
+
+            $('.alert').remove();
+            $('.basket__header').append(
+                '<div class="alert alert-success" role="alert">Usunięto z koszyka.</div>'
             );
         }
     } catch (err) {
@@ -108,18 +118,28 @@ export const deleteItem = async (target) => {
         const data = response.data;
 
         $('.alert').remove();
-        $('.basket').prepend(
+        $('.basket__header').append(
             '<div class="alert alert-success" role="alert">Usunięto z koszyka.</div>'
         );
 
         if (!(targetId in data.items)) {
-            $(`#${targetId}`).remove();
+            $(`#${targetId}`).fadeOut();
             $('#basket-total-price').text(data.totalPrice);
         }
 
         if (data.totalQty === 0) {
             $('.basket__content').html(
-                '<img src="img/empty.png" alt="Koszyk jest pusty" /><p>Twój koszyk jest pusty.</p>'
+                `<div class="row w-100 pb-5 justify-content-md-center">
+                <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+            </div>
+            <div class="row w-100 p-0 justify-content-md-center">    
+                <p>Twój koszyk jest pusty.</p>
+            </div>`
+            );
+
+            $('.alert').remove();
+            $('.basket__header').append(
+                '<div class="alert alert-success" role="alert">Usunięto z koszyka.</div>'
             );
         }
     } catch (err) {
@@ -134,21 +154,21 @@ export const checkout = async () => {
 
         if (data === 'empty') {
             $('.alert').remove();
-            $('.basket').prepend(
+            $('.basket__header').append(
                 '<div class="alert alert-danger" role="alert">Dodaj najpierw coś do koszyka!</div>'
             );
         }
 
         if (data === 'notlogged') {
             $('.alert').remove();
-            $('.basket').prepend(
+            $('.basket__header').append(
                 '<div class="alert alert-danger" role="alert">Musisz się najpierw zalogować.</div>'
             );
         }
 
         if (data === 'success') {
             $('.alert').remove();
-            $('.basket').prepend(
+            $('.basket__header').append(
                 '<div class="alert alert-success" role="alert">Twoje zamówienie zostało złożone. Dziękujemy!</div>'
             );
         }
