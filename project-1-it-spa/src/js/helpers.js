@@ -94,7 +94,7 @@ export const removeItem = async (target) => {
         if (data.totalQty === 0) {
             $('.basket__content').html(
                 `<div class="row w-100 pb-5 justify-content-md-center">
-                <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+                <img src="img/empty-basket.png" class="basket__content--img" alt="Koszyk jest pusty" />
             </div>
             <div class="row w-100 p-0 justify-content-md-center">    
                 <p>Twój koszyk jest pusty.</p>
@@ -130,7 +130,7 @@ export const deleteItem = async (target) => {
         if (data.totalQty === 0) {
             $('.basket__content').html(
                 `<div class="row w-100 pb-5 justify-content-md-center">
-                <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+                <img src="img/empty-basket.png" class="basket__content--img" alt="Koszyk jest pusty" />
             </div>
             <div class="row w-100 p-0 justify-content-md-center">    
                 <p>Twój koszyk jest pusty.</p>
@@ -171,6 +171,15 @@ export const checkout = async () => {
             $('.basket__header').append(
                 '<div class="alert alert-success" role="alert">Twoje zamówienie zostało złożone. Dziękujemy!</div>'
             );
+            $('.basket__content')
+                .html(`<div class="basket__content d-flex justify-content-center flex-column">
+            <div class="row w-100 pb-5 justify-content-md-center">
+                <img src="img/empty-basket.png" class="basket__content--img" alt="Koszyk jest pusty" />
+            </div>
+            <div class="row w-100 p-0 justify-content-md-center">    
+                <p>Twój koszyk jest pusty.</p>
+            </div>
+        </div>`);
         }
     } catch (err) {
         console.log(err);
@@ -185,7 +194,7 @@ export const deleteOrder = async (target) => {
 
         if (data === 'success') {
             $('.alert').remove();
-            $('.user').prepend(
+            $('.account__header').append(
                 '<div class="alert alert-success" role="alert">Rezerwacja anulowana.</div>'
             );
             $(`#${targetId}`).remove();
@@ -193,7 +202,7 @@ export const deleteOrder = async (target) => {
 
         if (data === 'error') {
             $('.alert').remove();
-            $('.user').prepend(
+            $('.account__header').append(
                 '<div class="alert alert-danger" role="alert">Wystąpił błąd. Wiesz, jak to jest... Spróbuj ponownie.</div>'
             );
         }

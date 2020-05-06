@@ -29,7 +29,8 @@ p {
     font-size: 1.1rem;
 }
 
-a {
+a,
+.btn-link {
     color: $color-outer-space;
     text-decoration: underline;
 

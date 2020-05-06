@@ -1,4 +1,4 @@
-.basket {
+.account {
     &__header {
         height: 5rem;
         background-color: $color-outer-space;
@@ -9,24 +9,18 @@
         min-height: calc(100vh - 300px);
         background-color: $color-concrete;
 
+        &--img {
+            width: 300px;
+        }
+
         .fa-calendar-alt,
-        .fa-minus-square,
-        .fa-trash-alt {
+        .fa-plane-slash {
             padding-left: 0.2rem;
         }
 
-        .fa-minus-square {
-            cursor: pointer;
-            color: $color-golden-tainoi;
-        }
-
-        .fa-trash-alt {
+        .fa-plane-slash {
             cursor: pointer;
             color: $color-sunset-orange;
-        }
-
-        &--img {
-            width: 300px;
         }
     }
 }
