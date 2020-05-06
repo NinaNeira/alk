@@ -1,12 +1,12 @@
 .login {
-    &-header {
-        height: 80px;
-        background-color: $color-regent-gray;
+    &__header {
+        height: 5rem;
+        background-color: $color-outer-space;
         color: $color-white;
     }
 
-    &-content {
+    &__content {
         min-height: calc(100vh - 300px);
-        background-color: $color-tower-gray;
+        background-color: $color-concrete;
     }
 }
