@@ -39,7 +39,6 @@ window.addEventListener('load', () => {
 
     Handlebars.registerHelper('formatDate', function (date, format) {
         const momentDate = moment(date);
-        console.log(momentDate);
         return momentDate.format(format);
     });
 

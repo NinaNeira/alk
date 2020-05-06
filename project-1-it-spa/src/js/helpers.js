@@ -277,7 +277,7 @@ const userLoginHandler = async () => {
 
         if (data.message === 'Missing credentials') {
             $('.alert').remove();
-            $('.login').prepend(
+            $('.login__header').append(
                 `<div class="alert alert-danger" role="alert">Podaj dane logowania.</div>`
             );
             $('#mail').addClass('is-invalid');
@@ -286,7 +286,7 @@ const userLoginHandler = async () => {
 
         if (data.name === 'IncorrectUsernameError') {
             $('.alert').remove();
-            $('.login').prepend(
+            $('.login__header').append(
                 `<div class="alert alert-danger" role="alert">Niepoprawna nazwa użytkownika.</div>`
             );
             $('#mail').addClass('is-invalid');
@@ -294,17 +294,20 @@ const userLoginHandler = async () => {
 
         if (data.name === 'IncorrectPasswordError') {
             $('.alert').remove();
-            $('.login').prepend(
+            $('.login__header').append(
                 `<div class="alert alert-danger" role="alert">Niepoprawne hasło.</div>`
             );
             $('#pass').addClass('is-invalid');
         }
 
         if (data === 'success') {
+            isUserAuthenticated();
+
             $('.alert').remove();
-            $('.login').prepend(
+            $('.login__header').append(
                 '<div class="alert alert-success" role="alert">Zalogowano.</div>'
             );
+            $('.login__content--form').trigger('reset');
         }
     } catch (error) {
         console.log(error);
