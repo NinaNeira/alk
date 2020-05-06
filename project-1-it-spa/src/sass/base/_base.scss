@@ -29,6 +29,16 @@ p {
     font-size: 1.1rem;
 }
 
+a {
+    color: $color-outer-space;
+    text-decoration: underline;
+
+    &:hover {
+        color: $color-outer-space;
+        text-decoration: none;
+    }
+}
+
 .datepicker {
     &.dropdown-menu {
         min-width: 15rem;

@@ -234,13 +234,13 @@ const userRegisterHandler = async () => {
 
         if (data.name === 'UserExistsError') {
             $('.alert').remove();
-            $('.register').prepend(
+            $('.register__header').append(
                 '<div class="alert alert-danger" role="alert">Konto z takim adresem e-mail już istnieje.</div>'
             );
             $('#username').addClass('is-invalid');
         } else if (data.errors) {
             $('.alert').remove();
-            $('.register').prepend(
+            $('.register__header').append(
                 '<div class="alert alert-danger" role="alert"></div>'
             );
 
@@ -252,9 +252,10 @@ const userRegisterHandler = async () => {
 
         if (data === 'success') {
             $('.alert').remove();
-            $('.register').prepend(
+            $('.register__header').append(
                 '<div class="alert alert-success" role="alert">Rejestracja pomyślna!</div>'
             );
+            $('.register__content--form').trigger('reset');
         }
     } catch (error) {
         console.log(error);
