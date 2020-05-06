@@ -52,6 +52,23 @@ window.addEventListener('load', () => {
         },
     });
 
+    const navigateToPath = () => {
+        $('a').on('click', (event) => {
+            const target = $(event.currentTarget);
+
+            const checkLinkClass = target.hasClass('footer__content--extlink');
+            console.log(checkLinkClass);
+
+            if (!checkLinkClass) {
+                event.preventDefault();
+
+                const href = target.attr('href');
+                const path = href.substr(href.lastIndexOf('/'));
+                router.navigateTo(path);
+            }
+        });
+    };
+
     router.add('/', async () => {
         try {
             const html = homeTemplate();
@@ -158,6 +175,8 @@ window.addEventListener('load', () => {
             el.html(html);
 
             $('.btn').click(userLoginSendHandler);
+
+            navigateToPath();
         } catch (error) {
             console.log(error);
         }
@@ -301,17 +320,5 @@ window.addEventListener('load', () => {
 
     router.navigateTo(window.location.pathname);
 
-    const link = $(`a[href$='${window.location.pathname}']`);
-    link.addClass('active');
-
-    $('a').on('click', (event) => {
-        event.preventDefault();
-        const target = $(event.currentTarget);
-        $('.nav-link').removeClass('active');
-        target.addClass('active');
-
-        const href = target.attr('href');
-        const path = href.substr(href.lastIndexOf('/'));
-        router.navigateTo(path);
-    });
+    navigateToPath();
 });
