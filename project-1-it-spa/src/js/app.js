@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
     const treatmentsTemplate = Handlebars.getTemplate('treatments');
     const registerTemplate = Handlebars.getTemplate('register');
     const loginTemplate = Handlebars.getTemplate('login');
-    const userTemplate = Handlebars.getTemplate('user');
+    const accountTemplate = Handlebars.getTemplate('account');
     const basketTemplate = Handlebars.getTemplate('basket');
 
     Handlebars.registerHelper('trim', function (string) {
@@ -57,7 +57,6 @@ window.addEventListener('load', () => {
             const target = $(event.currentTarget);
 
             const checkLinkClass = target.hasClass('footer__content--extlink');
-            console.log(checkLinkClass);
 
             if (!checkLinkClass) {
                 event.preventDefault();
@@ -217,15 +216,17 @@ window.addEventListener('load', () => {
             const response = await api.get('/user/account');
             const data = response.data;
 
-            console.log(data);
-
-            const html = userTemplate({ data: data });
+            const html = accountTemplate({ data: data });
             el.html(html);
 
             if (data.length === 0) {
-                $('.user-content').append(`
-                <img src="img/no-orders.png" />
-                <p>Nie masz żadnych zamówień</p>`);
+                $('.account__content').append(`
+                <div class="row w-100 pb-4 justify-content-md-center">
+                <img src="img/no-orders.png" class="account__content--img" />
+                </div>
+                <div class="row w-100 justify-content-md-center">
+                <p>Nie masz żadnych zamówień</p>
+                </div>`);
             }
 
             $('.fa-plane-slash').on('click', (e) => {
@@ -237,32 +238,47 @@ window.addEventListener('load', () => {
                 $('.confirm-cancel').attr('data-id', orderId);
             });
 
-            $('.confirm-cancel').on('click', (e) => {
-                e.preventDefault();
+            $('.confirm-cancel').on('click', async (e) => {
+                try {
+                    e.preventDefault();
 
-                const target = $(e.currentTarget);
-                deleteOrder(target);
+                    const target = $(e.currentTarget);
+                    deleteOrder(target);
 
-                const targetId = $('.confirm-cancel').attr('data-id');
+                    const targetId = $('.confirm-cancel').attr('data-id');
 
-                $('#order-cancel').modal('hide');
-                $(`#${targetId}`).remove();
+                    $('#order-cancel').modal('hide');
+                    $(`#${targetId}`).remove();
 
-                if (data.length === 0) {
-                    $('.user-content').append(`
-                    <img src="img/no-orders.png" />
-                    <p>Nie masz żadnych`);
+                    const response = await api.get('/user/account');
+                    const data = response.data;
+
+                    if (data.length === 0) {
+                        $('.account__content').append(`
+                    <div class="row w-100 pb-4 justify-content-md-center">
+                    <img src="img/no-orders.png" class="account__content--img" />
+                    </div>
+                    <div class="row w-100 justify-content-md-center">
+                    <p>Nie masz żadnych zamówień</p>
+                    </div>`);
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
             });
 
             if (data === 'not logged in') {
-                $('.user-content')
+                $('.account__content')
                     .html('')
                     .prepend(
                         `<div class="alert alert-danger" role="alert">Musisz się najpierw zalogować</div>`
                     ).append(`
-                <img src="img/user.svg" />
-                <a href="/logowanie">Przejdź do strony logowania</a>`);
+                    <div class="row w-100 pb-4 justify-content-md-center">
+                    <img src="img/user.svg" class="account__content--img" />
+                    </div>
+                    <div class="row w-100 justify-content-md-center">
+                    <a href="/logowanie">Przejdź do strony logowania</a>
+                    </div>`);
             }
         } catch (err) {
             console.log(err);
@@ -304,7 +320,7 @@ window.addEventListener('load', () => {
                 </div>
                 <div class="basket__content d-flex justify-content-center flex-column">
                     <div class="row w-100 pb-5 justify-content-md-center">
-                        <img src="img/empty-basket.png" class="basket__content-img" alt="Koszyk jest pusty" />
+                        <img src="img/empty-basket.png" class="basket__content--img" alt="Koszyk jest pusty" />
                     </div>
                     <div class="row w-100 p-0 justify-content-md-center">    
                         <p>Twój koszyk jest pusty.</p>
