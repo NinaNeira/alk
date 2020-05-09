@@ -61,6 +61,8 @@ window.addEventListener('load', () => {
             if (!checkLinkClass) {
                 event.preventDefault();
 
+                $('.main__content--loader').css('display', 'flex');
+
                 const href = target.attr('href');
                 const path = href.substr(href.lastIndexOf('/'));
                 router.navigateTo(path);
@@ -70,29 +72,22 @@ window.addEventListener('load', () => {
 
     router.add('/', async () => {
         try {
+            isUserAuthenticated();
+
             const html = homeTemplate();
             el.html(html);
 
-            isUserAuthenticated();
+            $('.main__content--loader').fadeOut();
 
-            $('body').css({ 'overflow-y': 'hidden' });
-            $('.welcome__content--btn').click(function () {
-                $('.welcome__content').animate({ top: '-100%' }, 1000);
-
-                setTimeout(() => {
-                    $('body').css({ 'overflow-y': 'scroll' });
-                }, 1000);
-
-                const slider = tns({
-                    container: '.home__slider',
-                    mode: 'gallery',
-                    autoplay: true,
-                    controls: false,
-                    nav: false,
-                    autoplayButtonOutput: false,
-                    speed: 500,
-                    autoplayTimeout: 10000,
-                });
+            const slider = tns({
+                container: '.home__slider',
+                mode: 'gallery',
+                autoplay: true,
+                controls: false,
+                nav: false,
+                autoplayButtonOutput: false,
+                speed: 500,
+                autoplayTimeout: 10000,
             });
         } catch (err) {
             console.log(err);
@@ -108,6 +103,8 @@ window.addEventListener('load', () => {
 
             const html = roomsTemplate({ data: data });
             el.html(html);
+
+            $('.main__content--loader').fadeOut();
 
             $('.btn').on('click', (e) => {
                 e.preventDefault();
@@ -143,6 +140,8 @@ window.addEventListener('load', () => {
             const html = treatmentsTemplate({ data: data });
             el.html(html);
 
+            $('.main__content--loader').fadeOut();
+
             $('.btn').on('click', (e) => {
                 e.preventDefault();
                 const target = $(e.currentTarget);
@@ -160,6 +159,8 @@ window.addEventListener('load', () => {
             const html = registerTemplate();
             el.html(html);
 
+            $('.main__content--loader').fadeOut();
+
             $('.btn').click(userRegisterSendHandler);
         } catch (error) {
             console.log(error);
@@ -172,6 +173,8 @@ window.addEventListener('load', () => {
 
             const html = loginTemplate();
             el.html(html);
+
+            $('.main__content--loader').fadeOut();
 
             $('.btn').click(userLoginSendHandler);
 
@@ -190,6 +193,8 @@ window.addEventListener('load', () => {
 
             const html = homeTemplate();
             el.html(html);
+
+            $('.main__content--loader').fadeOut();
 
             if (data === 'logout') {
                 isUserAuthenticated();
@@ -218,6 +223,8 @@ window.addEventListener('load', () => {
 
             const html = accountTemplate({ data: data });
             el.html(html);
+
+            $('.main__content--loader').fadeOut();
 
             if (data.length === 0) {
                 $('.account__content').append(`
@@ -296,6 +303,8 @@ window.addEventListener('load', () => {
                 const html = basketTemplate({ data: data });
                 el.html(html);
 
+                $('.main__content--loader').fadeOut();
+
                 $('.fa-minus-square').on('click', (e) => {
                     e.preventDefault();
                     const target = $(e.currentTarget);
@@ -328,6 +337,8 @@ window.addEventListener('load', () => {
                 </div>
             </div>`;
                 el.html(html);
+
+                $('.main__content--loader').fadeOut();
             }
         } catch (err) {
             console.log(err);

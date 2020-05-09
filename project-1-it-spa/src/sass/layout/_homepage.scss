@@ -4,6 +4,10 @@
             height: 5rem;
             background-color: $color-outer-space;
             color: $color-white;
+
+            @include media-breakpoint-down(xs) {
+                height: 4rem;
+            }
         }
 
         &--content {
@@ -14,19 +18,15 @@
             &-img {
                 display: block;
                 margin: 0 auto;
-                width: 190px;
+                max-width: 100%;
                 background-color: $color-golden-tainoi;
                 border-radius: 50%;
             }
 
             &-item {
-                &:first-of-type,
                 &:last-of-type {
-                    img {
-                        width: 460px;
-                        border-radius: unset;
-                        background-color: unset;
-                        opacity: 0.7;
+                    @include media-breakpoint-down(xs) {
+                        margin-top: 20px;
                     }
                 }
             }
@@ -38,6 +38,10 @@
             height: 5rem;
             background-color: $color-regent-gray;
             color: $color-white;
+
+            @include media-breakpoint-down(xs) {
+                height: 4rem;
+            }
         }
 
         &--content {
@@ -47,7 +51,8 @@
                 display: block;
                 margin: 0 auto;
                 padding-bottom: 30px;
-                width: 450px;
+                max-width: 450px;
+                width: 100%;
             }
         }
     }
@@ -57,6 +62,10 @@
             height: 5rem;
             background-color: $color-outer-space;
             color: $color-white;
+
+            @include media-breakpoint-down(xs) {
+                height: 4rem;
+            }
         }
 
         &--content {
@@ -66,8 +75,26 @@
             &-item {
                 border-right: 2px solid $color-white;
 
+                @include media-breakpoint-down(xs) {
+                    border: none;
+                }
+
+                &:nth-of-type(2) {
+                    @include media-breakpoint-down(sm) {
+                        border: none;
+                    }
+                }
+
                 &:last-of-type {
                     border: none;
+
+                    @include media-breakpoint-down(md) {
+                        margin-top: 40px;
+                    }
+
+                    @include media-breakpoint-down(xs) {
+                        margin-top: 0;
+                    }
                 }
 
                 p {
