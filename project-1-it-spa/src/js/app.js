@@ -1,24 +1,27 @@
 import Router from 'vanilla-router';
 import Handlebars from 'handlebars';
-import moment from 'moment';
 import { tns } from 'tiny-slider/src/tiny-slider';
 
 import '../sass/main.scss';
-import './templates';
+import './hdbHelpers';
 
 import {
     isUserAuthenticated,
     userRegisterSendHandler,
     userLoginSendHandler,
-    addRoomToCart,
-    addTreatmentToCart,
+} from './user';
+
+import {
+    addRoomToBasket,
+    addTreatmentToBasket,
     removeItem,
     deleteItem,
-    deleteOrder,
     checkout,
-    database,
-    api,
-} from './helpers';
+} from './basket';
+
+import { deleteOrder } from './order';
+
+import { database, api, errorMsg } from './helpers';
 
 window.addEventListener('load', () => {
     const el = $('.main__content--app');
@@ -32,16 +35,6 @@ window.addEventListener('load', () => {
     const accountTemplate = Handlebars.getTemplate('account');
     const basketTemplate = Handlebars.getTemplate('basket');
 
-    Handlebars.registerHelper('trim', function (string) {
-        const newString = string.substring(0, 7);
-        return new Handlebars.SafeString(newString);
-    });
-
-    Handlebars.registerHelper('formatDate', function (date, format) {
-        const momentDate = moment(date);
-        return momentDate.format(format);
-    });
-
     const router = new Router({
         mode: 'history',
         page404: () => {
@@ -49,6 +42,8 @@ window.addEventListener('load', () => {
 
             const html = errorTemplate();
             el.html(html);
+
+            $('.main__content--loader').fadeOut();
         },
     });
 
@@ -90,7 +85,8 @@ window.addEventListener('load', () => {
                 autoplayTimeout: 10000,
             });
         } catch (err) {
-            console.log(err);
+            $('.alert').remove();
+            $('.home').prepend(errorMsg);
         }
     });
 
@@ -109,7 +105,7 @@ window.addEventListener('load', () => {
             $('.btn').on('click', (e) => {
                 e.preventDefault();
                 const target = $(e.currentTarget);
-                addRoomToCart(target);
+                addRoomToBasket(target);
             });
 
             $('.rooms__date--arr').datepicker({
@@ -126,7 +122,8 @@ window.addEventListener('load', () => {
                 autoclose: true,
             });
         } catch (err) {
-            console.log(err);
+            $('.alert').remove();
+            $('.rooms__header').append(errorMsg);
         }
     });
 
@@ -145,10 +142,11 @@ window.addEventListener('load', () => {
             $('.btn').on('click', (e) => {
                 e.preventDefault();
                 const target = $(e.currentTarget);
-                addTreatmentToCart(target);
+                addTreatmentToBasket(target);
             });
         } catch (err) {
-            console.log(err);
+            $('.alert').remove();
+            $('.treatments__header').append(errorMsg);
         }
     });
 
@@ -162,8 +160,9 @@ window.addEventListener('load', () => {
             $('.main__content--loader').fadeOut();
 
             $('.btn').click(userRegisterSendHandler);
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            $('.alert').remove();
+            $('.register__header').append(errorMsg);
         }
     });
 
@@ -174,13 +173,14 @@ window.addEventListener('load', () => {
             const html = loginTemplate();
             el.html(html);
 
+            navigateToPath();
+
             $('.main__content--loader').fadeOut();
 
             $('.btn').click(userLoginSendHandler);
-
-            navigateToPath();
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            $('.alert').remove();
+            $('.login__header').append(errorMsg);
         }
     });
 
@@ -191,26 +191,28 @@ window.addEventListener('load', () => {
             const response = await api.get('/user/logout');
             const data = response.data;
 
-            const html = homeTemplate();
-            el.html(html);
-
-            $('.main__content--loader').fadeOut();
+            router.navigateTo('/');
 
             if (data === 'logout') {
                 isUserAuthenticated();
 
                 $('.alert').remove();
-                $('.home-slider').prepend(
+                $('.home').prepend(
                     '<div class="alert alert-success" role="alert">Wylogowano.</div>'
                 );
             } else {
                 $('.alert').remove();
-                $('.home-slider').prepend(
+                $('.home').prepend(
                     '<div class="alert alert-danger" role="alert">Wystąpił błąd. Wiesz, jak to jest... Spróbuj ponownie.</div>'
                 );
             }
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            router.navigateTo('/');
+
+            $('.alert').remove();
+            $('.home').prepend(
+                '<div class="alert alert-danger" role="alert">Wystąpił błąd. Wiesz, jak to jest... Spróbuj ponownie.</div>'
+            );
         }
     });
 
@@ -251,44 +253,30 @@ window.addEventListener('load', () => {
 
                     const target = $(e.currentTarget);
                     deleteOrder(target);
-
-                    const targetId = $('.confirm-cancel').attr('data-id');
-
-                    $('#order-cancel').modal('hide');
-                    $(`#${targetId}`).remove();
-
-                    const response = await api.get('/user/account');
-                    const data = response.data;
-
-                    if (data.length === 0) {
-                        $('.account__content').append(`
-                    <div class="row w-100 pb-4 justify-content-md-center">
-                    <img src="img/no-orders.png" class="account__content--img" />
-                    </div>
-                    <div class="row w-100 justify-content-md-center">
-                    <p>Nie masz żadnych zamówień</p>
-                    </div>`);
-                    }
                 } catch (err) {
-                    console.log(err);
+                    $('.alert').remove();
+                    $('.account__header').append(errorMsg);
                 }
             });
 
-            if (data === 'not logged in') {
-                $('.account__content')
-                    .html('')
-                    .prepend(
-                        `<div class="alert alert-danger" role="alert">Musisz się najpierw zalogować</div>`
-                    ).append(`
+            if (data === 'not logged') {
+                $('.account__header').append(
+                    '<div class="alert alert-danger" role="alert">Musisz się najpierw zalogować</div>'
+                );
+
+                $('.account__content').html('').append(`
                     <div class="row w-100 pb-4 justify-content-md-center">
                     <img src="img/user.svg" class="account__content--img" />
                     </div>
                     <div class="row w-100 justify-content-md-center">
                     <a href="/logowanie">Przejdź do strony logowania</a>
                     </div>`);
+
+                navigateToPath();
             }
         } catch (err) {
-            console.log(err);
+            $('.alert').remove();
+            $('.account__header').append(errorMsg);
         }
     });
 
@@ -341,7 +329,8 @@ window.addEventListener('load', () => {
                 $('.main__content--loader').fadeOut();
             }
         } catch (err) {
-            console.log(err);
+            $('.alert').remove();
+            $('.basket__header').append(errorMsg);
         }
     });
 

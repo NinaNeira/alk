@@ -3,14 +3,9 @@ body {
     background-color: $color-concrete;
     font-family: 'Roboto', sans-serif;
     color: $color-outer-space;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow-y: auto;
 
-    &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }
+    @include scrollbars(3px, $color-outer-space, transparent);
 }
 
 .row {

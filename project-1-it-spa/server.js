@@ -62,7 +62,7 @@ app.get('/database/rooms', async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(allRooms);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -72,7 +72,7 @@ app.get('/database/treatments', async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(allTreatments);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -87,7 +87,7 @@ app.get('/database/rooms/:id/:arr/:dep', async (req, res) => {
         await Room.findById(roomId).exec((err, room) => {
             res.setHeader('Content-Type', 'application/json');
             if (err) {
-                res.send(err);
+                res.send('error');
             } else {
                 if (room.id in basket.items) {
                     res.send('exists');
@@ -99,7 +99,7 @@ app.get('/database/rooms/:id/:arr/:dep', async (req, res) => {
             }
         });
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -111,7 +111,7 @@ app.get('/database/treatments/:id', async (req, res) => {
         await Treatment.findById(treatmentId).exec((err, treatment) => {
             res.setHeader('Content-Type', 'application/json');
             if (err) {
-                res.send(err);
+                res.send('error');
             } else {
                 if (treatment.id in basket.items) {
                     if (basket.items[treatmentId].qty > 2) {
@@ -129,7 +129,7 @@ app.get('/database/treatments/:id', async (req, res) => {
             }
         });
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -139,7 +139,7 @@ app.get('/database/basket', async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(basket);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -153,7 +153,7 @@ app.get('/database/basket/remove/:id', async (req, res) => {
         req.session.basket = basket;
         res.send(basket);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -167,7 +167,7 @@ app.get('/database/basket/delete/:id', async (req, res) => {
         req.session.basket = basket;
         res.send(basket);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -177,7 +177,7 @@ app.get('/database/checkout', async (req, res) => {
         if (!req.session.basket || req.session.basket.totalQty === 0) {
             res.send('empty');
         } else if (!req.isAuthenticated()) {
-            res.send('notlogged');
+            res.send('not logged');
         } else {
             const basket = new Basket(req.session.basket);
             const user = await User.findById(req.user._id).exec();
@@ -195,7 +195,7 @@ app.get('/database/checkout', async (req, res) => {
             res.send('success');
         }
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -218,22 +218,27 @@ app.get('/database/order/delete/:id', async (req, res) => {
                             res.send('error');
                         } else {
                             user.save();
+
+                            if (user.orders.length === 0) {
+                                order.remove();
+                                res.send('no orders');
+                            } else {
+                                order.remove();
+                                res.send('success');
+                            }
                         }
                     });
-
-                order.remove();
-                res.send('success');
             }
         });
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
 app.post(
     '/api/user/register',
     [
-        checkBody('mail', 'Podaj prawidłowy adres e-mail')
+        checkBody('mail', 'Podaj prawidłowy adres e-mail.')
             .isEmail()
             .normalizeEmail(),
         checkBody('pass')
@@ -261,14 +266,14 @@ app.post(
                     res.setHeader('Content-Type', 'application/json');
 
                     if (err) {
-                        res.send(err);
+                        res.send('error');
                     } else {
                         res.send('success');
                     }
                 });
             }
         } catch (err) {
-            console.log(err);
+            res.send('error');
         }
     }
 );
@@ -292,7 +297,7 @@ app.post('/api/user/login', async (req, res, next) => {
         }
 
         if (err) {
-            console.log(err);
+            res.send('error');
         }
     })(req, res, next);
 });
@@ -304,7 +309,7 @@ app.get('/api/user/logout', async (req, res) => {
         req.logout();
         res.send('logout');
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -315,7 +320,7 @@ app.get('/api/user', async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(isUserAuthenticated);
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 
@@ -331,10 +336,10 @@ app.get('/api/user/account', async (req, res) => {
             res.send(allOrders);
         } else {
             res.setHeader('Content-Type', 'application/json');
-            res.send('not logged in');
+            res.send('not logged');
         }
     } catch (err) {
-        console.log(err);
+        res.send('error');
     }
 });
 

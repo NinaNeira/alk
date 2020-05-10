@@ -70,10 +70,10 @@
 
         &--content {
             background-color: $color-golden-tainoi;
-            color: $color-white;
+            color: $color-outer-space;
 
             &-item {
-                border-right: 2px solid $color-white;
+                border-right: 1px solid $color-outer-space;
 
                 @include media-breakpoint-down(xs) {
                     border: none;
@@ -102,5 +102,9 @@
                 }
             }
         }
+    }
+
+    .alert {
+        margin-bottom: 0;
     }
 }
